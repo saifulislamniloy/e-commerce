@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Container, Col, Card, Row } from 'react-bootstrap'
 import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
+import { Link } from 'react-router-dom';
 
 export default class Category extends Component {
     constructor() {
@@ -27,12 +28,12 @@ export default class Category extends Component {
         const view = categoryData.map(categoryData => {
             return (<Col sm={12} md={6} lg={4} className="p-2">
                 <div>
-                    <Card className="category">
+                   <Link to="/products"> <Card className="category">
                         <Card.Img variant="top" src={"" + categoryData.link} className="img"/>
                         <Card.Body>
                             <Card.Title className="title text-center">{categoryData.title}</Card.Title>
                         </Card.Body>
-                    </Card>
+                    </Card></Link>
                 </div>
             </Col>)
         })

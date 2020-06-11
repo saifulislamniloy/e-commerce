@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from "react-router-dom";
 import HomePage from '../page/HomePage';
+import ProductListPage from '../page/ProductListPage';
 
 class AppRoute extends Component {
     render() {
@@ -8,6 +9,7 @@ class AppRoute extends Component {
             <Fragment>
                 <Switch>
                     <Route exact path="/" component={HomePage} />
+                    <Route exact path="/products" component={ProductListPage} />
                 </Switch>
             </Fragment>
         );

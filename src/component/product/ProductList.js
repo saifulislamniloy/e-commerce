@@ -4,16 +4,15 @@ import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
 
 export default class ProductList extends Component {
-    constructor() {
-        super();
-        this.state = {
-            categoryId: "1",
-            productListView: ""
+    constructor(props) {
+        super(props);
+        this.state={
+            productListView:""
         }
     }
 
     componentDidMount() {
-        axios.get(AppUrl.productList + "/" + this.state.categoryId)
+        axios.get(AppUrl.productList + "/" + this.props.id)
             .then(response => {
                 console.log(response);
                 this.setProducts(response.data)

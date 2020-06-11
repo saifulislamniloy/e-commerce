@@ -9,7 +9,7 @@ class AppRoute extends Component {
             <Fragment>
                 <Switch>
                     <Route exact path="/" component={HomePage} />
-                    <Route exact path="/products" component={ProductListPage} />
+                    <Route exact path="/products/:id" component={ProductListPage} />
                 </Switch>
             </Fragment>
         );

@@ -30,10 +30,7 @@ export default class Category extends Component {
                     <Card className="category">
                         <Card.Img variant="top" src={"" + categoryData.link} className="img"/>
                         <Card.Body>
-                            <Card.Title className="cardTitle">{categoryData.title}</Card.Title>
-                            <Card.Text className="subtitle">
-                                {categoryData.id}
-                            </Card.Text>
+                            <Card.Title className="title text-center">{categoryData.title}</Card.Title>
                         </Card.Body>
                     </Card>
                 </div>

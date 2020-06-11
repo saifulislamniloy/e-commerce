@@ -27,8 +27,8 @@ export default class Category extends Component {
         const view = categoryData.map(categoryData => {
             return (<Col sm={12} md={6} lg={4} className="p-2">
                 <div>
-                    <Card className="card">
-                        <Card.Img variant="top" src={"" + categoryData.link} className="catergoryImage"/>
+                    <Card className="category">
+                        <Card.Img variant="top" src={"" + categoryData.link} className="img"/>
                         <Card.Body>
                             <Card.Title className="cardTitle">{categoryData.title}</Card.Title>
                             <Card.Text className="subtitle">

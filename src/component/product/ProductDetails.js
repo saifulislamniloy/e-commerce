@@ -11,6 +11,7 @@ export default class ProductDetails extends Component {
             priceView: "",
             imageView: "",
             specView: "",
+            ratingView:"",
             amount: 1
         }
     }
@@ -37,6 +38,11 @@ export default class ProductDetails extends Component {
                 <h1>{productData.title}</h1>
             )
         })
+        const ratingView = productData.map(productData => {
+            return (
+                <h5>{"Rating: "+productData.point/productData.person}</h5>
+            )
+        })
 
         const priceView = productData.map(productData => {
             return (
@@ -48,7 +54,7 @@ export default class ProductDetails extends Component {
                 <h6 className="spec">{productData.spec}</h6>
             )
         })
-        this.setState({ imageView: imageView, titleView: titleView, priceView: priceView, specView: specView })
+        this.setState({ imageView: imageView, titleView: titleView, ratingView:ratingView, priceView: priceView, specView: specView })
     }
 
     onClickPlus() {
@@ -78,6 +84,9 @@ export default class ProductDetails extends Component {
                             <Row>
                                 <Col sm={12} md={12} lg={12}>
                                     {this.state.titleView}
+                                </Col>
+                                <Col sm={12} md={12} lg={12}>
+                                    {this.state.ratingView}
                                 </Col>
                                 <Col sm={12} md={12} lg={12}>
                                     {this.state.priceView}

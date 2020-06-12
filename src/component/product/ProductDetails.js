@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 export default class ProductDetails extends Component {
     constructor(props) {
@@ -10,6 +10,7 @@ export default class ProductDetails extends Component {
             titleView: "",
             priceView: "",
             imageView: "",
+            specView: "",
             amount: 1
         }
     }
@@ -39,10 +40,15 @@ export default class ProductDetails extends Component {
 
         const priceView = productData.map(productData => {
             return (
-                <h5>{productData.price}</h5>
+                <h5>{productData.price + "/" + productData.amount}</h5>
             )
         })
-        this.setState({ imageView: imageView, titleView: titleView, priceView: priceView })
+        const specView = productData.map(productData => {
+            return (
+                <h6 className="spec">{productData.spec}</h6>
+            )
+        })
+        this.setState({ imageView: imageView, titleView: titleView, priceView: priceView, specView: specView })
     }
 
     onClickPlus() {
@@ -64,9 +70,11 @@ export default class ProductDetails extends Component {
                 <Container>
                     <Row className="productDetail">
                         <Col sm={12} md={6} lg={6}>
-                            {this.state.imageView}
+                            <Card>
+                                {this.state.imageView}
+                            </Card>
                         </Col>
-                        <Col sm={12} md={6} lg={6}>
+                        <Col className="des" sm={12} md={6} lg={6}>
                             <Row>
                                 <Col sm={12} md={12} lg={12}>
                                     {this.state.titleView}
@@ -89,6 +97,12 @@ export default class ProductDetails extends Component {
                             <Row>
                                 <Col sm={12} md={12} lg={12} >
                                     <Button variant="primary">Add to Cart</Button>
+                                </Col>
+                            </Row>
+                            <hr />
+                            <Row>
+                                <Col sm={12} md={12} lg={12} >
+                                    {this.state.specView}
                                 </Col>
                             </Row>
                         </Col>

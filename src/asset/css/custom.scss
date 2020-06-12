@@ -39,4 +39,9 @@
         height: 20rem;
         border: 1px solid black;
     }
+    .spec{
+        height: 10rem;
+        max-height: 10rem;
+        overflow-y: scroll;
+    } 
 }

@@ -1,3 +1,10 @@
+$primaryFont: 'Montserrat', sans-serif;
+$primaryFontWeight: 600;
+$secondaryFont: 'Raleway', sans-serif;
+$secondaryFontWeight: 400;
+$transitionSpeed: background-color 800ms linear;
+$navItemFontWeight: 500;
+$primaryBlue: #0073E6;
 .category {
     .img {
         height: 10rem;
@@ -45,6 +52,23 @@
         overflow-y: scroll;
     } 
 }
+
+.topBanner{
+    .banner {
+      background-image: url("https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+      min-height: 300px;
+      width: 100%;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: 5rem;
+    }
+    .searchLayout{
+        padding-top: 8rem;
+        padding-left: 10rem;
+    }
+  }
+
 
 .footer{
     .header{

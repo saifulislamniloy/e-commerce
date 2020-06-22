@@ -25,7 +25,7 @@ export default class ProductList extends Component {
     setProducts(data) {
         const productData = data;
         const view = productData.map(productData => {
-            return (<Col sm={12} md={6} lg={4} className="p-2">
+            return (<Col sm={6} md={4} lg={3} className="p-2">
                 <div className="productList">
                     <Card className="card">
                         <Link to={"/product-detail/" + productData.id}>

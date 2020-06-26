@@ -30,12 +30,12 @@ export default class ProductDetails extends Component {
         const productData = data;
         const imageView = productData.map(productData => {
             return (
-                <img className="img" src={"" + productData.link} alt="smiley" />
+                <img className="img" src={"" + productData.p_imgLink} alt="smiley" />
             )
         })
         const titleView = productData.map(productData => {
             return (
-                <h1>{productData.title}</h1>
+                <h1>{productData.p_title}</h1>
             )
         })
         const ratingView = productData.map(productData => {
@@ -51,7 +51,7 @@ export default class ProductDetails extends Component {
         })
         const specView = productData.map(productData => {
             return (
-                <h6 className="spec">{productData.spec}</h6>
+                <h6 className="spec">{productData.specification}</h6>
             )
         })
         this.setState({ imageView: imageView, titleView: titleView, ratingView:ratingView, priceView: priceView, specView: specView })

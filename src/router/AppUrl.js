@@ -1,7 +1,7 @@
 export default class AppUrl {
-    static baseUrl = "http://localhost:3010";
+    static baseUrl = "http://localhost:5000/api";
 
-    static categoryList = this.baseUrl + "/category-list";
-    static productList = this.baseUrl + "/product-list";
-    static productDetail = this.baseUrl + "/product-detail";
+    static categoryList = this.baseUrl + "/categories";
+    static productList = this.baseUrl + "/categories";
+    static productDetail = this.baseUrl + "/products";
 }

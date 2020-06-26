@@ -28,12 +28,12 @@ export default class ProductList extends Component {
             return (<Col sm={6} md={4} lg={3} className="p-2">
                 <div className="productList">
                     <Card className="card">
-                        <Link to={"/product-detail/" + productData.id}>
+                        <Link to={"/product-detail/" + productData.p_id}>
                             <Button className="button" variant="primary">Product Details</Button>
                         </Link>
-                        <Card.Img variant="top" src={"" + productData.link} className="img" />
+                        <Card.Img variant="top" src={"" + productData.p_imgLink} className="img" />
                         <Card.Body>
-                            <Card.Title className="title text-center">{productData.title}</Card.Title>
+                            <Card.Title className="title text-center">{productData.p_title}</Card.Title>
                             <Card.Text className="title text-center">{productData.amount}</Card.Text>
                             <Card.Text className="title text-center">{productData.price}</Card.Text>
                         </Card.Body>

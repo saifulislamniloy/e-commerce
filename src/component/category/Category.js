@@ -3,6 +3,7 @@ import { Container, Col, Card, Row } from 'react-bootstrap'
 import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
 import { Link } from 'react-router-dom';
+import LanguageMode from '../../localStorage/LanguageMode';
 
 export default class Category extends Component {
     constructor() {

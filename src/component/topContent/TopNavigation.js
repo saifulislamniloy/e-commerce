@@ -6,6 +6,15 @@ import { NavLink } from "react-router-dom";
 import LanguageMode from '../../localStorage/LanguageMode';
 
 export default class TopNavigation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            languageMode: "1"
+        }
+    }
+    componentDidMount(){
+        this.setState({languageMode:LanguageMode.loadMode()})
+    }
     setLanguageMode(mode){
         LanguageMode.setMode(mode)
     }
@@ -23,9 +32,9 @@ export default class TopNavigation extends Component {
                                 <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/"> </NavLink>
                                 <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/profile"></NavLink>
                             </Nav>
-                            <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-                                <ToggleButton onClick={()=> this.setLanguageMode("1")} value={1}>বাংলা</ToggleButton>
-                                <ToggleButton onClick={()=> this.setLanguageMode("0")} value={2}>English</ToggleButton>
+                            <ToggleButtonGroup type="radio" name="options" defaultValue={parseInt(this.state.languageMode)}>
+                                <ToggleButton variant="outline-success" onClick={()=> this.setLanguageMode("1")} value={1}>বাংলা</ToggleButton>
+                                <ToggleButton variant="outline-success" onClick={()=> this.setLanguageMode("0")} value={0}>English</ToggleButton>
                             </ToggleButtonGroup>
                         </Navbar.Collapse>
                     </Navbar>

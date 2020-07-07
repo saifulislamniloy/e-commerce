@@ -14,7 +14,7 @@ export default class Category extends Component {
     }
 
     componentDidMount() {
-        axios.get(AppUrl.categoryList)
+        axios.get(AppUrl.categoryList+"/"+LanguageMode.loadMode())
             .then(response => {
                 console.log(response);
                 this.setCatergories(response.data)

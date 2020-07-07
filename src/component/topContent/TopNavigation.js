@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import '../../asset/css/custom.scss';
 import '../../asset/css/bootstrap.min.css';
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav, ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
 import { NavLink } from "react-router-dom";
+import LanguageMode from '../../localStorage/LanguageMode';
 
 export default class TopNavigation extends Component {
+    setLanguageMode(mode){
+        LanguageMode.setMode(mode)
+    }
     render() {
         return (
             <Fragment>
@@ -16,9 +20,13 @@ export default class TopNavigation extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/">Menu Button  </NavLink>
-                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/profile">Menu Button  </NavLink>
+                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/"> </NavLink>
+                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/profile"></NavLink>
                             </Nav>
+                            <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+                                <ToggleButton onClick={()=> this.setLanguageMode("1")} value={1}>বাংলা</ToggleButton>
+                                <ToggleButton onClick={()=> this.setLanguageMode("0")} value={2}>English</ToggleButton>
+                            </ToggleButtonGroup>
                         </Navbar.Collapse>
                     </Navbar>
                 </Container>

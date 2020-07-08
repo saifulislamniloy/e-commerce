@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import LanguageMode from '../../localStorage/LanguageMode';
 
 export default class ProductDetails extends Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class ProductDetails extends Component {
         }
     }
     componentDidMount() {
-        axios.get(AppUrl.productDetail + "/" + this.props.id)
+        axios.get(AppUrl.productDetail + "/" + this.props.id+"/"+LanguageMode.loadMode())
             .then(response => {
                 console.log(response);
                 this.setProductDetail(response.data)

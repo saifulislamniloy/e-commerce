@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import '../../asset/css/custom.scss';
 import '../../asset/css/bootstrap.min.css';
 import { Container, Navbar, Nav, ToggleButton, ToggleButtonGroup } from 'react-bootstrap'
-import { NavLink } from "react-router-dom";
+import { NavLink,  Redirect } from "react-router-dom";
 import LanguageMode from '../../localStorage/LanguageMode';
 import TopNavigationItems from '../../language/TopNavigationItems';
 
@@ -10,17 +10,25 @@ export default class TopNavigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            languageMode: LanguageMode.loadMode()
+            languageMode: LanguageMode.loadMode(),
+            reload: false
         }
     }
 
     setLanguageMode(mode){
         LanguageMode.setMode(mode)
+        this.setState({reload:true})
+    }
+
+    reload = () => {
+        if (this.state.reload === true)
+            return <Redirect to="/"/>
     }
 
     render() {
         return (
             <Fragment>
+                {this.reload()}
                 <Container>
                     <Navbar fixed="top" bg="light" variant="light" collapseOnSelect expand="lg">
                         <Navbar.Brand className="title" href="/" ><img src="https://www.elegantthemes.com/blog/wp-content/uploads/2019/05/featued-headless-ecommerce.jpg" height="32" width="32" alt="Smiley face" />  {TopNavigationItems.getHeader(parseInt(this.state.languageMode))}</Navbar.Brand>

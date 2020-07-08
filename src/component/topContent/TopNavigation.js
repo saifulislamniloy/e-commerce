@@ -9,15 +9,14 @@ export default class TopNavigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            languageMode: "1"
+            languageMode: LanguageMode.loadMode()
         }
     }
-    componentDidMount(){
-        this.setState({languageMode:LanguageMode.loadMode()})
-    }
+
     setLanguageMode(mode){
         LanguageMode.setMode(mode)
     }
+
     render() {
         return (
             <Fragment>

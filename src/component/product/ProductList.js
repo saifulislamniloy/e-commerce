@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
 import { Link } from 'react-router-dom';
+import LanguageMode from '../../localStorage/LanguageMode';
 
 export default class ProductList extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class ProductList extends Component {
     }
 
     componentDidMount() {
-        axios.get(AppUrl.productList + "/" + this.props.id)
+        axios.get(AppUrl.productList + "/" + this.props.id+"/"+LanguageMode.loadMode())
             .then(response => {
                 console.log(response);
                 this.setProducts(response.data)

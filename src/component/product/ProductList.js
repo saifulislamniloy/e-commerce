@@ -4,11 +4,13 @@ import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
 import { Link } from 'react-router-dom';
 import LanguageMode from '../../localStorage/LanguageMode';
+import ProductItems from '../../language/ProductItems';
 
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            languageMode:LanguageMode.loadMode(),
             productListView: ""
         }
     }
@@ -30,7 +32,7 @@ export default class ProductList extends Component {
                 <div className="productList">
                     <Card className="card">
                         <Link to={"/product-detail/" + productData.p_id}>
-                            <Button className="button" variant="primary">Product Details</Button>
+                            <Button className="button" variant="primary">{ProductItems.details(this.state.languageMode)}</Button>
                         </Link>
                         <Card.Img variant="top" src={"" + productData.p_imgLink} className="img" />
                         <Card.Body>
@@ -38,7 +40,7 @@ export default class ProductList extends Component {
                             <Card.Text className="title text-center">{productData.amount}</Card.Text>
                             <Card.Text className="title text-center">{productData.price}</Card.Text>
                         </Card.Body>
-                        <Button variant="primary">Add to Cart</Button>
+                        <Button variant="primary">{ProductItems.addToCart(this.state.languageMode)}</Button>
                     </Card>
                 </div>
             </Col>)

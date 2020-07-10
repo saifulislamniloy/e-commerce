@@ -1,7 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { Container, Row, Col} from 'react-bootstrap'
+import LanguageMode from '../../localStorage/LanguageMode';
+import FooterItem from '../../language/FooterItem';
 
 export default class Footer extends Component {
+    constructor(){
+        super();
+        this.state={
+            languageMode: LanguageMode.loadMode()
+        }
+    }
     render() {
         return (
             <Fragment>
@@ -10,18 +18,18 @@ export default class Footer extends Component {
                     <Row className="footer">
                        
                         <Col lg={4} md={6} sm={12} className="p-5 text-justify">
-                            <h1 className="header">Customer Service</h1>
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer"> Contact Us</a><br />
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer"> FAQ</a>
+                            <h1 className="header">{FooterItem.customerService(this.state.languageMode)}</h1>
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.contactUs(this.state.languageMode)}</a><br />
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.faq(this.state.languageMode)}</a>
                         </Col>
                         <Col lg={4} md={6} sm={12} className="p-5 text-justify">
-                            <h1 className="header">About Site</h1>
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer"> Privacy Policy</a><br />
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer"> Terms of Use</a>
+                            <h1 className="header">{FooterItem.aboutSite(this.state.languageMode)}</h1>
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.privacyPolicy(this.state.languageMode)}</a><br />
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.termsOfUse(this.state.languageMode)}</a>
                         </Col>
                         <Col lg={4} md={6} sm={12} className="p-5 text-justify">
-                            <h1 className="header">For Business</h1>
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer"> Corporate</a>
+                            <h1 className="header">{FooterItem.forBusiness(this.state.languageMode)}</h1>
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.corporate(this.state.languageMode)}</a>
                         </Col>
                     </Row>
                 </Container>

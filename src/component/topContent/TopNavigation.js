@@ -7,8 +7,8 @@ import LanguageMode from '../../localStorage/LanguageMode';
 import TopNavigationItems from '../../language/TopNavigationItems';
 
 export default class TopNavigation extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             languageMode: LanguageMode.loadMode(),
             reload: false
@@ -17,11 +17,11 @@ export default class TopNavigation extends Component {
 
     setLanguageMode(mode){
         LanguageMode.setMode(mode)
-        this.setState({reload:true})
+        this.setState({reload:true, languageMode:mode})
     }
 
     reload = () => {
-        if (this.state.reload === true)
+        if (this.state.reload === true )
             return <Redirect to="/"/>
     }
 

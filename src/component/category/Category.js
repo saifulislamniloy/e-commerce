@@ -9,19 +9,25 @@ export default class Category extends Component {
     constructor() {
         super();
         this.state = {
+            languageMode: LanguageMode.loadMode(),
+            reload:false,
             categoryListView: ""
         }
     }
 
     componentDidMount() {
+        this.loadData()
+    }
+
+    loadData(){
         axios.get(AppUrl.categoryList+"/"+LanguageMode.loadMode())
-            .then(response => {
-                console.log(response);
-                this.setCatergories(response.data)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        .then(response => {
+            console.log(response);
+            this.setCatergories(response.data)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
     }
 
     setCatergories(data) {
@@ -41,9 +47,17 @@ export default class Category extends Component {
         this.setState({ categoryListView: view })
     }
 
+    reload = () => {
+        if (this.state.reload === true ){
+            this.loadData()
+            this.setState({reload:false})
+        }
+    }
+
     render() {
         return (
             <Fragment>
+                {this.reload()}
                 <Container>
                     <Row>
                         {this.state.categoryListView}

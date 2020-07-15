@@ -5,6 +5,7 @@ import AppUrl from '../../router/AppUrl';
 import { Link } from 'react-router-dom';
 import LanguageMode from '../../localStorage/LanguageMode';
 import ProductItems from '../../language/ProductItems';
+import Cart from '../../cart/Cart';
 
 export default class ProductList extends Component {
     constructor(props) {
@@ -40,12 +41,17 @@ export default class ProductList extends Component {
                             <Card.Text className="title text-center">{productData.amount}</Card.Text>
                             <Card.Text className="title text-center">{productData.price}</Card.Text>
                         </Card.Body>
-                        <Button variant="primary">{ProductItems.addToCart(this.state.languageMode)}</Button>
+                        <Button onClick={()=> this.addToCart(productData.p_id)} variant="primary">{ProductItems.addToCart(this.state.languageMode)}</Button>
                     </Card>
                 </div>
             </Col>)
         })
         this.setState({ productListView: view })
+    }
+
+    addToCart(productId){
+        let data = {id:productId, quantity:1}
+        Cart.addToCart(data)
     }
 
     render() {

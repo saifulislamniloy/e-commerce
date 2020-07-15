@@ -41,7 +41,10 @@ export default class ProductList extends Component {
                             <Card.Text className="title text-center">{productData.amount}</Card.Text>
                             <Card.Text className="title text-center">{productData.price}</Card.Text>
                         </Card.Body>
-                        <Button onClick={()=> this.addToCart(productData.p_id)} variant="primary">{ProductItems.addToCart(this.state.languageMode)}</Button>
+                        <Button onClick={()=> this.addToCart(productData.p_id, 
+                            productData.p_imgLink,
+                            productData.p_title, 
+                            productData.price )} variant="primary">{ProductItems.addToCart(this.state.languageMode)}</Button>
                     </Card>
                 </div>
             </Col>)
@@ -49,8 +52,8 @@ export default class ProductList extends Component {
         this.setState({ productListView: view })
     }
 
-    addToCart(productId){
-        let data = {id:productId, quantity:1}
+    addToCart(productId, img, title, price){
+        let data = {id:productId, quantity:1, img:img, title:title, price:price}
         Cart.addToCart(data)
     }
 

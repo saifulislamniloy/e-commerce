@@ -1,42 +1,31 @@
-class Cart{
-    static addToCart(x){
-        if(sessionStorage.getItem('products') !== null){
-            var temp = []
-            temp.push(sessionStorage.getItem('products'));
-            temp.push(x)
-            
-            sessionStorage.setItem('products',temp);
-            console.log("products: " + sessionStorage.getItem('products'));
-        }
-        else{
-            var products = [];
-            products.push(x);
-            alert(products)
-            sessionStorage.setItem('products',products);
-            console.log("products first: " + sessionStorage.getItem('products'));
-        }
+var products = {
+    items: []
+};
+
+class Cart {
+
+    static addToCart(x) {
+        this.check(x)
+        console.log(products)
+        console.log(x['id'])
     }
 
-    static loadCart(){
-        if(sessionStorage.getItem("products") !== null){
-            return JSON.parse(sessionStorage.getItem('products'))
-        }
+    static loadCart() {
+        return products.items
     }
 
-    arrayCheck(arr, x){
-        var flag = false
+    static check(x) {
         var i;
-        var temp = []
-        temp.push(arr)
-        for (i = 0; i < arr.temp; i++) {
-            if(temp['id'] === x['id']){
-                temp['quantity'] = temp['quantity']+1;
-                temp = true
+        var flag = true
+        for (i = 0; i < products.items.length; i++) {
+            if (products.items[i]['id'] === x['id']) {
+                products.items[i]['quantity'] = products.items[i]['quantity'] + 1
+                flag = false
             }
-          }
-          if(flag === false)
-          temp.push(x)
-          return temp
+        }
+        if (flag === true)
+            products.items.push(x);
     }
+
 }
 export default Cart;

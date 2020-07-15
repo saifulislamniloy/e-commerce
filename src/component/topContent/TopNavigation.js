@@ -37,7 +37,7 @@ export default class TopNavigation extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/"> </NavLink>
+                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/cart">Cart</NavLink>
                                 <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/profile"></NavLink>
                             </Nav>
                             <ToggleButtonGroup type="radio" name="options" defaultValue={parseInt(this.state.languageMode)}>

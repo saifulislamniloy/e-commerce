@@ -3,11 +3,6 @@ var products = {
 };
 
 class Cart {
-    constructor() {
-        products = sessionStorage.getItem("Products")
-        console.log(products)
-    }
-
     static addToCart(x) {
         this.check(x)
         console.log(products)
@@ -49,8 +44,17 @@ class Cart {
     }
 
     static removeOne(x) {
-        delete products.items[this.getIndex(x)]
-        console.log(products)
+        var i = this.getIndex(x)
+        if(products.items[i]['quantity'] > 0){
+            products.items[i]['quantity'] = products.items[i]['quantity'] - 1
+            this.setLocalStorage()
+        }
+    }
+
+    static add(x) {
+        var i = this.getIndex(x)
+        products.items[i]['quantity'] = products.items[i]['quantity'] + 1
+        this.setLocalStorage()
     }
 
     static getIndex(x) {
@@ -60,6 +64,5 @@ class Cart {
                 return i;
         }
     }
-
 }
 export default Cart;

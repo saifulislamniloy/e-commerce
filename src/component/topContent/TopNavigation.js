@@ -6,6 +6,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import LanguageMode from '../../localStorage/LanguageMode';
 import TopNavigationItems from '../../language/TopNavigationItems';
 import cart from "../../asset/icon/carts.png"
+import user from "../../asset/icon/user.png"
 
 export default class TopNavigation extends Component {
     constructor() {
@@ -38,8 +39,8 @@ export default class TopNavigation extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{ color: '#002C42' }} className="custom-padding" to="/cart"><img src={cart} height="32" width="32" alt="Smiley face" /></NavLink>
-                                <NavLink exact activeStyle={{ color: '#002C42' }} className="sideMenuTitle" to="/profile"></NavLink>
+                                <NavLink className="custom-padding" to="/cart"><img src={cart} height="32" width="32" alt="Smiley face" /></NavLink>
+                                <NavLink className="custom-padding" to="#"><img src={user} height="32" width="32" alt="Smiley face" /></NavLink>
                             </Nav>
                             <ToggleButtonGroup type="radio" name="options" defaultValue={parseInt(this.state.languageMode)}>
                                 <ToggleButton variant="outline-success" onClick={() => this.setLanguageMode("1")} value={1}>বাংলা</ToggleButton>

@@ -17,7 +17,8 @@ class Cart {
         var i;
         var flag = true
         this.getLocalStorage()
-        for (i = 0; i < products.items.length; i++) {
+        var size = products.items.length;
+        for (i = 0; i < size; i++) {
             if (products.items[i]['id'] === x['id']) {
                 products.items[i]['quantity'] = products.items[i]['quantity'] + 1
                 flag = false
@@ -30,7 +31,7 @@ class Cart {
     }
 
     static getLocalStorage() {
-        if (sessionStorage.products !== null) {
+        if (sessionStorage.getItem("products") !== null) {
             products= JSON.parse(sessionStorage.getItem("products"))
         }
         console.log("get: ",products)
@@ -43,7 +44,7 @@ class Cart {
         console.log("set: ",products)
     }
 
-    static removeOne(x) {
+    static decreaseQuantity(x) {
         var i = this.getIndex(x)
         if(products.items[i]['quantity'] > 0){
             products.items[i]['quantity'] = products.items[i]['quantity'] - 1
@@ -51,9 +52,16 @@ class Cart {
         }
     }
 
-    static add(x) {
+    static increaseQuantity(x) {
         var i = this.getIndex(x)
         products.items[i]['quantity'] = products.items[i]['quantity'] + 1
+        this.setLocalStorage()
+    }
+
+    static remove(x) {
+        var i = this.getIndex(x)
+        // products.items[i]['quantity'] = products.items[i]['quantity'] + 1
+        products.items.splice(i, 1)
         this.setLocalStorage()
     }
 

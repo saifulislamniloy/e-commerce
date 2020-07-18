@@ -37,16 +37,16 @@ export default class CartItems extends Component {
                                         <Card.Title className="title text-center vertical-center">{arr.price}</Card.Title>
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
-                                        <img className="vertical-center icon" onClick={() => this.add(arr.id)} src={plus} alt="delete"/>
+                                        <img className="vertical-center icon" onClick={() => this.increace(arr.id)} src={plus} alt="delete"/>
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
-                                        <img className="vertical-center icon" onClick={() => this.remove(arr.id)} src={minus} alt="delete"/>
+                                        <img className="vertical-center icon" onClick={() => this.decrease(arr.id)} src={minus} alt="delete"/>
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
                                         <img className="vertical-center icon" onClick={() => this.remove(arr.id)} src={deleteImg} alt="delete"/>
                                     </Col>
                                     <Col lg={3} md={3} sm={3}>
-                                        <Card.Title className="title text-center vertical-center">{arr.quantity+"*5 = 5000 BDT"}</Card.Title>
+                                        <Card.Title className="title text-center vertical-center">{arr.quantity}</Card.Title>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -55,18 +55,26 @@ export default class CartItems extends Component {
                 </Col>)
             })
             this.setState({ cartView: view })
+        }else{
+            this.setState({ cartView: "" })
         }
     }
 
-    remove(x) {
+    decrease(x) {
         let data = { id: x }
-        Cart.removeOne(data)
+        Cart.decreaseQuantity(data)
         this.setState({reload:true})
     }
 
-    add(x){
+    increace(x){
         let data = { id: x }
-        Cart.add(data)
+        Cart.increaseQuantity(data)
+        this.setState({reload:true})
+    }
+
+    remove(x){
+        let data = { id: x }
+        Cart.remove(data)
         this.setState({reload:true})
     }
 

@@ -65,6 +65,11 @@ class Cart {
         this.setLocalStorage()
     }
 
+    static getQuantity(x){
+        var i = this.getIndex(x)
+        return products.items[i]['quantity']
+    }
+
     static getIndex(x) {
         var i;
         for (i = 0; i < products.items.length; i++) {

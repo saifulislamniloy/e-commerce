@@ -4,12 +4,16 @@ import Cart from '../../cart/Cart'
 import plus from '../../asset/icon/plus.png'
 import minus from '../../asset/icon/minus.png'
 import deleteImg from '../../asset/icon/delete.png'
+import BanglaConverter from '../../language/BanglaConverter'
+import EnglishConverter from '../../language/EnglishConverter'
+import LanguageMode from '../../localStorage/LanguageMode'
 
 export default class CartItems extends Component {
     constructor() {
         super();
         this.state = {
             cartView: "",
+            totalPrice: 0,
             reload:false
         }
     }
@@ -46,7 +50,7 @@ export default class CartItems extends Component {
                                         <img className="vertical-center icon" onClick={() => this.remove(arr.id)} src={deleteImg} alt="delete"/>
                                     </Col>
                                     <Col lg={3} md={3} sm={3}>
-                                        <Card.Title className="title text-center vertical-center">{arr.quantity}</Card.Title>
+                                        <Card.Title className="title text-center vertical-center">{this.processPriceData(arr.id, arr.price)}</Card.Title>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -63,19 +67,32 @@ export default class CartItems extends Component {
     decrease(x) {
         let data = { id: x }
         Cart.decreaseQuantity(data)
+        this.setState({totalPrice:0})
         this.setState({reload:true})
     }
 
     increace(x){
         let data = { id: x }
         Cart.increaseQuantity(data)
+        this.setState({totalPrice:0})
         this.setState({reload:true})
     }
 
     remove(x){
         let data = { id: x }
         Cart.remove(data)
+        this.setState({totalPrice:0})
         this.setState({reload:true})
+    }
+
+    processPriceData(id, price){
+        let data = { id: id }
+        let quantity = Cart.getQuantity(data)
+        if(LanguageMode.loadMode() === "1"){
+            let price_en = parseInt(EnglishConverter.execute(price))
+            this.setState({totalPrice:this.state.totalPrice+price_en*quantity})
+            return ""+price+"*"+BanglaConverter.execute(""+quantity)+" = "+BanglaConverter.execute(""+price_en*quantity)+" টাকা"
+        }
     }
 
     reloadCart=()=>{
@@ -92,6 +109,9 @@ export default class CartItems extends Component {
                 <Container>
                     <Row>
                         {this.state.cartView}
+                        <Col>
+                        {this.state.totalPrice}
+                        </Col>
                     </Row>
                 </Container>
             </Fragment>

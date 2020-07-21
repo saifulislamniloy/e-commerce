@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import Cart from '../../cart/Cart'
 import plus from '../../asset/icon/plus.png'
 import minus from '../../asset/icon/minus.png'
@@ -14,7 +14,8 @@ export default class CartItems extends Component {
         this.state = {
             cartView: "",
             totalPrice: 0,
-            reload:false
+            reload:false,
+            itemCount: 0
         }
     }
     componentDidMount() {
@@ -24,6 +25,7 @@ export default class CartItems extends Component {
 
     loadCartData(){
         let arr = Cart.loadCart();
+        this.setState({itemCount :arr.length})
         if (arr.length > 0) {
             const view = arr.map(arr => {
                 return (<Col sm={12} md={12} lg={12} className="p-2">
@@ -109,6 +111,9 @@ export default class CartItems extends Component {
                 <Container>
                     <Row>
                         {this.state.cartView}
+                        <Col>
+                        {this.state.itemCount > 0 ? <Button>Purchase</Button> : ""}
+                        </Col>
                         <Col>
                         {this.state.totalPrice}
                         </Col>

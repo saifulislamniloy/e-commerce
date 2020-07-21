@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import LanguageMode from '../../localStorage/LanguageMode';
 
 export default class Category extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            languageMode: LanguageMode.loadMode(),
             reload:false,
+            languageMode:LanguageMode.loadMode(),
             categoryListView: ""
         }
     }
@@ -20,7 +20,7 @@ export default class Category extends Component {
     }
 
     loadData(){
-        axios.get(AppUrl.categoryList+"/"+LanguageMode.loadMode())
+        axios.get(AppUrl.categoryList+"/"+this.props.languageMode)
         .then(response => {
             console.log(response);
             this.setCatergories(response.data)
@@ -48,10 +48,10 @@ export default class Category extends Component {
     }
 
     reload = () => {
-        if (this.state.reload === true ){
-            this.loadData()
-            this.setState({reload:false})
-        }
+        // if (this.state.languageMode !== this.props.languageMode ){
+        //     this.loadData()
+        //     this.setState({reload:false})
+        // }
     }
 
     render() {

@@ -8,7 +8,6 @@ export default class TopBanner extends Component {
     constructor(){
         super();
         this.state={
-            languageMode:LanguageMode.loadMode(),
             key:""
         }
     }
@@ -23,13 +22,13 @@ export default class TopBanner extends Component {
                                 <Col lg={8} md={8} sm={8}>
                                     <Form>
                                         <Form.Group>
-                                            <Form.Control id="keyId" type="text" placeholder={TopBannerItems.getSearchBarPlaceHolder(this.state.languageMode)} value={"" + this.state.key} onChange={e => this.setState({ key: e.target.value })}/>
+                                            <Form.Control id="keyId" type="text" placeholder={TopBannerItems.getSearchBarPlaceHolder(this.props.languageMode)} value={"" + this.state.key} onChange={e => this.setState({ key: e.target.value })}/>
                                         </Form.Group>
                                     </Form>
                                 </Col>
                                 <Col lg={4} md={4} sm={4}>
                                     <Button variant="primary">
-                                        <Link to= {"/search/"+this.state.key} className="title">{TopBannerItems.getSearchButtonText(this.state.languageMode)}</Link>
+                                        <Link to= {"/search/"+this.state.key} className="title">{TopBannerItems.getSearchButtonText(this.props.languageMode)}</Link>
                                     </Button>
                                 </Col>
                             </Row>

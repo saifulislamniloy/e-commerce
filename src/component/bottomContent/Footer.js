@@ -18,18 +18,18 @@ export default class Footer extends Component {
                     <Row className="footer">
                        
                         <Col lg={4} md={6} sm={12} className="p-5 text-justify">
-                            <h1 className="header">{FooterItem.customerService(this.state.languageMode)}</h1>
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.contactUs(this.state.languageMode)}</a><br />
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.faq(this.state.languageMode)}</a>
+                            <h1 className="header">{FooterItem.customerService(this.props.languageMode)}</h1>
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.contactUs(this.props.languageMode)}</a><br />
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.faq(this.props.languageMode)}</a>
                         </Col>
                         <Col lg={4} md={6} sm={12} className="p-5 text-justify">
-                            <h1 className="header">{FooterItem.aboutSite(this.state.languageMode)}</h1>
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.privacyPolicy(this.state.languageMode)}</a><br />
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.termsOfUse(this.state.languageMode)}</a>
+                            <h1 className="header">{FooterItem.aboutSite(this.props.languageMode)}</h1>
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.privacyPolicy(this.props.languageMode)}</a><br />
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.termsOfUse(this.props.languageMode)}</a>
                         </Col>
                         <Col lg={4} md={6} sm={12} className="p-5 text-justify">
-                            <h1 className="header">{FooterItem.forBusiness(this.state.languageMode)}</h1>
-                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.corporate(this.state.languageMode)}</a>
+                            <h1 className="header">{FooterItem.forBusiness(this.props.languageMode)}</h1>
+                            <a className="link" href="/" target="_blank" rel="noopener noreferrer">{FooterItem.corporate(this.props.languageMode)}</a>
                         </Col>
                     </Row>
                 </Container>

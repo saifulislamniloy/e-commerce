@@ -14,7 +14,7 @@ export default class CartItems extends Component {
         this.state = {
             cartView: "",
             totalPrice: 0,
-            reload:false,
+            reload: false,
             itemCount: 0
         }
     }
@@ -23,9 +23,9 @@ export default class CartItems extends Component {
     }
 
 
-    loadCartData(){
+    loadCartData() {
         let arr = Cart.loadCart();
-        this.setState({itemCount :arr.length})
+        this.setState({ itemCount: arr.length })
         if (arr.length > 0) {
             const view = arr.map(arr => {
                 return (<Col sm={12} md={12} lg={12} className="p-2">
@@ -34,7 +34,7 @@ export default class CartItems extends Component {
                             <Card.Body>
                                 <Row className="cart">
                                     <Col lg={2} md={2} sm={2}>
-                                        <img className="vertical-center" src={""+arr.img} alt="smiley" width="80" height="80"/>
+                                        <img className="vertical-center" src={"" + arr.img} alt="smiley" width="80" height="80" />
                                     </Col>
                                     <Col lg={2} md={2} sm={2}>
                                         <Card.Title className="title text-center vertical-center">{arr.title}</Card.Title>
@@ -43,13 +43,13 @@ export default class CartItems extends Component {
                                         <Card.Title className="title text-center vertical-center">{arr.price}</Card.Title>
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
-                                        <img className="vertical-center icon" onClick={() => this.increace(arr.id)} src={plus} alt="delete"/>
+                                        <img className="vertical-center icon" onClick={() => this.increace(arr.id)} src={plus} alt="delete" />
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
-                                        <img className="vertical-center icon" onClick={() => this.decrease(arr.id)} src={minus} alt="delete"/>
+                                        <img className="vertical-center icon" onClick={() => this.decrease(arr.id)} src={minus} alt="delete" />
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
-                                        <img className="vertical-center icon" onClick={() => this.remove(arr.id)} src={deleteImg} alt="delete"/>
+                                        <img className="vertical-center icon" onClick={() => this.remove(arr.id)} src={deleteImg} alt="delete" />
                                     </Col>
                                     <Col lg={3} md={3} sm={3}>
                                         <Card.Title className="title text-center vertical-center">{this.processPriceData(arr.id, arr.price)}</Card.Title>
@@ -61,7 +61,7 @@ export default class CartItems extends Component {
                 </Col>)
             })
             this.setState({ cartView: view })
-        }else{
+        } else {
             this.setState({ cartView: "" })
         }
     }
@@ -69,38 +69,38 @@ export default class CartItems extends Component {
     decrease(x) {
         let data = { id: x }
         Cart.decreaseQuantity(data)
-        this.setState({totalPrice:0})
-        this.setState({reload:true})
+        this.setState({ totalPrice: 0 })
+        this.setState({ reload: true })
     }
 
-    increace(x){
+    increace(x) {
         let data = { id: x }
         Cart.increaseQuantity(data)
-        this.setState({totalPrice:0})
-        this.setState({reload:true})
+        this.setState({ totalPrice: 0 })
+        this.setState({ reload: true })
     }
 
-    remove(x){
+    remove(x) {
         let data = { id: x }
         Cart.remove(data)
-        this.setState({totalPrice:0})
-        this.setState({reload:true})
+        this.setState({ totalPrice: 0 })
+        this.setState({ reload: true })
     }
 
-    processPriceData(id, price){
+    processPriceData(id, price) {
         let data = { id: id }
         let quantity = Cart.getQuantity(data)
-        if(LanguageMode.loadMode() === "1"){
+        if (LanguageMode.loadMode() === "1") {
             let price_en = parseInt(EnglishConverter.execute(price))
-            this.setState({totalPrice:this.state.totalPrice+price_en*quantity})
-            return ""+price+"*"+BanglaConverter.execute(""+quantity)+" = "+BanglaConverter.execute(""+price_en*quantity)+" টাকা"
+            this.setState({ totalPrice: this.state.totalPrice + price_en * quantity })
+            return "" + price + "*" + BanglaConverter.execute("" + quantity) + " = " + BanglaConverter.execute("" + price_en * quantity) + " টাকা"
         }
     }
 
-    reloadCart=()=>{
-        if(this.state.reload === true){
+    reloadCart = () => {
+        if (this.state.reload === true) {
             this.loadCartData()
-            this.setState({reload:false})
+            this.setState({ reload: false })
         }
     }
 
@@ -112,10 +112,10 @@ export default class CartItems extends Component {
                     <Row>
                         {this.state.cartView}
                         <Col>
-                        {this.state.itemCount > 0 ? <Button>Purchase</Button> : ""}
+                            {this.state.itemCount > 0 ? this.state.totalPrice : ""}
                         </Col>
                         <Col>
-                        {this.state.totalPrice}
+                            {this.state.itemCount > 0 ? <Button>Purchase</Button> : <h1>Cart is Empty!</h1>}
                         </Col>
                     </Row>
                 </Container>

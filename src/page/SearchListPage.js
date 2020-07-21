@@ -10,10 +10,15 @@ export default class SearchListPage extends Component {
             id:match.params.id
         }
     }
+
+    callbackFunction = (childData) => {
+        this.setState({ languageMode: childData })
+    }
+
     render() {
         return (
             <Fragment>
-                <TopNavigation />
+                <TopNavigation parentCallback={this.callbackFunction}  languageMode={this.state.languageMode} />
                 <br /><br /><br /><br />
                 <SearchList id={this.state.id}/>
                 <Footer/>

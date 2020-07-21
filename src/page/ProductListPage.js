@@ -24,7 +24,7 @@ export default class ProductListPage extends Component {
                 <TopNavigation parentCallback={this.callbackFunction} />
                 <br /><br /><br /><br />
                 <ProductList id={this.state.id} languageMode={this.state.languageMode} />
-                <Footer />
+                <Footer languageMode={this.state.languageMode} />
             </Fragment>
         )
     }

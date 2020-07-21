@@ -20,20 +20,19 @@ export default class TopNavigation extends Component {
     setLanguageMode(mode) {
         LanguageMode.setMode(mode)
         this.setState({ reload: true, languageMode: mode })
+        this.sendData(mode)
     }
 
-    reload = () => {
-        if (this.state.reload === true)
-            return <Redirect to="/" />
+    sendData = (mode) => {
+        this.props.parentCallback(mode);
     }
 
     render() {
         return (
             <Fragment>
-                {this.reload()}
                 <Container className="topNavigation">
                     <Navbar fixed="top" bg="light" variant="light" collapseOnSelect expand="lg">
-                        <Navbar.Brand  href="/" ><img src="https://www.elegantthemes.com/blog/wp-content/uploads/2019/05/featued-headless-ecommerce.jpg" height="32" width="32" alt="Smiley face" />{TopNavigationItems.getHeader(parseInt(this.state.languageMode))}</Navbar.Brand>
+                        <Navbar.Brand href="/" ><img src="https://www.elegantthemes.com/blog/wp-content/uploads/2019/05/featued-headless-ecommerce.jpg" height="32" width="32" alt="Smiley face" />{TopNavigationItems.getHeader(parseInt(this.state.languageMode))}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav" >
                             <Nav className="mr-auto">

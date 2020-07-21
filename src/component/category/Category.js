@@ -9,7 +9,6 @@ export default class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            reload:false,
             languageMode:LanguageMode.loadMode(),
             categoryListView: ""
         }
@@ -18,6 +17,14 @@ export default class Category extends Component {
     componentDidMount() {
         this.loadData()
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.languageMode !== prevProps.languageMode) {
+            this.loadData()
+        }
+    }
+
+
 
     loadData(){
         axios.get(AppUrl.categoryList+"/"+this.props.languageMode)
@@ -47,17 +54,10 @@ export default class Category extends Component {
         this.setState({ categoryListView: view })
     }
 
-    reload = () => {
-        // if (this.state.languageMode !== this.props.languageMode ){
-        //     this.loadData()
-        //     this.setState({reload:false})
-        // }
-    }
 
     render() {
         return (
             <Fragment>
-                {this.reload()}
                 <Container>
                     <Row>
                         {this.state.categoryListView}

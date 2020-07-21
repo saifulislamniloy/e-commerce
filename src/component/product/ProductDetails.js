@@ -19,7 +19,17 @@ export default class ProductDetails extends Component {
         }
     }
     componentDidMount() {
-        axios.get(AppUrl.productDetail + "/" + this.props.id+"/"+LanguageMode.loadMode())
+        this.loadData()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.languageMode !== prevProps.languageMode) {
+            this.loadData()
+        }
+    }
+
+    loadData(){
+        axios.get(AppUrl.productDetail + "/" + this.props.id+"/"+this.props.languageMode)
             .then(response => {
                 console.log(response);
                 this.setProductDetail(response.data)

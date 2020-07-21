@@ -15,10 +15,10 @@ export default class Comment extends Component {
             <Fragment>
                 <Container>
                     <Form>
-                        <Form.Label>{CommentItems.getCommentName(this.state.languageMode)}</Form.Label>
+                        <Form.Label>{CommentItems.getCommentName(this.props.languageMode)}</Form.Label>
                         <Form.Control as="textarea" />
                         <Button variant="primary" type="submit">
-                            {CommentItems.getButtonName(this.state.languageMode)}
+                            {CommentItems.getButtonName(this.props.languageMode)}
                         </Button>
                     </Form>
                 </Container>

@@ -13,15 +13,23 @@ export default class CartItems extends Component {
         super();
         this.state = {
             cartView: "",
-            totalPrice: 0,
+            totalPrice:"",
             reload: false,
             itemCount: 0
         }
     }
+
+
     componentDidMount() {
         this.loadCartData()
     }
 
+
+    componentDidUpdate(prevProps) {
+        if (this.props.languageMode !== prevProps.languageMode) {
+            this.loadCartData()
+        }
+    }
 
     loadCartData() {
         let arr = Cart.loadCart();
@@ -37,10 +45,10 @@ export default class CartItems extends Component {
                                         <img className="vertical-center" src={"" + arr.img} alt="smiley" width="80" height="80" />
                                     </Col>
                                     <Col lg={2} md={2} sm={2}>
-                                        <Card.Title className="title text-center vertical-center">{arr.title}</Card.Title>
+                                        <Card.Title className="title text-center vertical-center">{this.props.languageMode == 1 ? arr.title : arr.title_en}</Card.Title>
                                     </Col>
                                     <Col lg={2} md={2} sm={2}>
-                                        <Card.Title className="title text-center vertical-center">{arr.price}</Card.Title>
+                                        <Card.Title className="title text-center vertical-center">{this.props.languageMode == 1 ? BanglaConverter.execute(""+arr.price)+" টাকা" : arr.price+" BDT"}</Card.Title>
                                     </Col>
                                     <Col lg={1} md={1} sm={1}>
                                         <img className="vertical-center icon" onClick={() => this.increace(arr.id)} src={plus} alt="delete" />
@@ -91,9 +99,9 @@ export default class CartItems extends Component {
         let data = { id: id }
         let quantity = Cart.getQuantity(data)
         if (LanguageMode.loadMode() === "1") {
-            let price_en = parseInt(EnglishConverter.execute(price))
-            this.setState({ totalPrice: this.state.totalPrice + price_en * quantity })
-            return "" + price + "*" + BanglaConverter.execute("" + quantity) + " = " + BanglaConverter.execute("" + price_en * quantity) + " টাকা"
+            return "" + BanglaConverter.execute(""+price) + "*" + BanglaConverter.execute("" + quantity) + " = " + BanglaConverter.execute("" + price * quantity) + " টাকা"
+        }else{
+            return "" + price + "*" + quantity + " = " + price * quantity + " BDT"
         }
     }
 

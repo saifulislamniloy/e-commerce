@@ -77,5 +77,15 @@ class Cart {
                 return i;
         }
     }
+
+    static getTotalPrice(){
+        let size = products.items.length
+        let temp = 0;
+        let i = 0;
+        for (i = 0; i<size; i++){
+            temp = temp + products.items[i]['price'] * products.items[i]['quantity']
+        }
+        return temp
+    }
 }
 export default Cart;

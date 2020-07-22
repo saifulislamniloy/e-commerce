@@ -68,9 +68,17 @@ export default class CartItems extends Component {
                     </div>
                 </Col>)
             })
-            this.setState({ cartView: view })
+            this.setState({ cartView: view , totalPrice:this.processTotalPrice()})
         } else {
             this.setState({ cartView: "" })
+        }
+    }
+
+    processTotalPrice(){
+        if(this.props.languageMode === "1"){
+            return "মোট "+ BanglaConverter.execute(""+Cart.getTotalPrice())+" টাকা"
+        }else{
+            return "Total "+ Cart.getTotalPrice()+" BDT"
         }
     }
 
@@ -119,10 +127,10 @@ export default class CartItems extends Component {
                 <Container>
                     <Row>
                         {this.state.cartView}
-                        <Col>
-                            {this.state.itemCount > 0 ? this.state.totalPrice : ""}
+                        <Col sm={12} md={12} lg={12}>
+                            {this.state.itemCount > 0 ? <Card className="text-center p-3">{this.state.totalPrice}</Card> : ""}
                         </Col>
-                        <Col>
+                        <Col sm={12} md={12} lg={12}>
                             {this.state.itemCount > 0 ? <Button>Purchase</Button> : <h1>Cart is Empty!</h1>}
                         </Col>
                     </Row>

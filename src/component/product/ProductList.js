@@ -8,6 +8,7 @@ import ProductItems from '../../language/ProductItems';
 import Cart from '../../cart/Cart';
 import AmountBanglaConverter from '../../language/AmountBanglaConverter';
 import BanglaConverter from '../../language/BanglaConverter';
+import AddRemoveButton from '../miniComponent/AddRemoveButton';
 
 export default class ProductList extends Component {
     constructor(props) {
@@ -51,13 +52,14 @@ export default class ProductList extends Component {
                         <Card.Body>
                             <Card.Title className="title text-center">{this.props.languageMode == 1 ? productData.p_title : productData.p_title_eng}</Card.Title>
                             <Card.Text className="title text-center">{this.props.languageMode == 1 ? AmountBanglaConverter.execute(productData.amount) : productData.amount}</Card.Text>
-                            <Card.Text className="title text-center">{this.props.languageMode == 1 ? BanglaConverter.execute(""+productData.price)+" টাকা" : productData.price +" BDT"} </Card.Text>
+                            <Card.Text className="title text-center">{this.props.languageMode == 1 ? BanglaConverter.execute("" + productData.price) + " টাকা" : productData.price + " BDT"} </Card.Text>
                         </Card.Body>
+                        {Cart.itemCount(productData.p_id) > 0 ? <AddRemoveButton/> : 
                         <Button onClick={() => this.addToCart(productData.p_id,
                             productData.p_imgLink,
                             productData.p_title,
                             productData.p_title_eng,
-                            productData.price)} variant="primary">{ProductItems.addToCart(this.props.languageMode)}</Button>
+                            productData.price)} variant="primary">{ProductItems.addToCart(this.props.languageMode)}</Button>}
                     </Card>
                 </div>
             </Col>)
@@ -67,9 +69,15 @@ export default class ProductList extends Component {
 
 
     addToCart(productId, img, title, title_en, price) {
-        let data = { id: productId, quantity: 1, img: img, title: title, title_en:title_en, price: price }
+        let data = { id: productId, quantity: 1, img: img, title: title, title_en: title_en, price: price }
         Cart.addToCart(data)
     }
+
+    itemQuantity(id) {
+        let data = { id: id }
+        alert(Cart.getIndexForCartMenu(data))
+    }
+
 
 
     render() {

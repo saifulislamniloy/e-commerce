@@ -13,7 +13,8 @@ export default class PurchaseForm extends Component {
         }
     
         axios.post(AppUrl.cart, body, config)
-          .then(function (response) {
+          .then(function (response) { 
+            alert("Order Placed Sucessful")
             console.log(response);
           })
           .catch(function (error) {

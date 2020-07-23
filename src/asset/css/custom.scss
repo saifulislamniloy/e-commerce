@@ -118,3 +118,15 @@ $primaryBlue: #0073E6;
         box-shadow: 1px 1px 1px 1px;
     }
 }
+
+.addRemoveButton{
+    .icon{
+        width: 2rem;
+        height: 2rem;
+    }
+    .box{
+        border-color: #0073E6;
+        border-width: thick;
+        border-radius: 2px;
+    }
+}

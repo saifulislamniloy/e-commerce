@@ -78,6 +78,16 @@ class Cart {
         }
     }
 
+    static itemCount(x) {
+        var i;
+        this.getLocalStorage()
+        for (i = 0; i < products.items.length; i++) {
+            if (products.items[i]['id'] === x)
+                return products.items[i]['quantity'];
+        }
+    }
+
+
     static getTotalPrice() {
         let size = products.items.length
         let temp = 0;
@@ -100,8 +110,7 @@ class Cart {
                 c_id: 1,
                 p_title: products.items[i]['title'],
                 p_count: products.items[i]['quantity'],
-                price: products.items[i]['price'],
-                total_price: products.items[i]['price']
+                price: products.items[i]['price']
             }
             tempArr.push(temp)
         }

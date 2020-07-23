@@ -54,7 +54,7 @@ export default class ProductList extends Component {
                             <Card.Text className="title text-center">{this.props.languageMode == 1 ? AmountBanglaConverter.execute(productData.amount) : productData.amount}</Card.Text>
                             <Card.Text className="title text-center">{this.props.languageMode == 1 ? BanglaConverter.execute("" + productData.price) + " টাকা" : productData.price + " BDT"} </Card.Text>
                         </Card.Body>
-                        {Cart.itemCount(productData.p_id) > 0 ? <AddRemoveButton/> : 
+                        {Cart.itemCount(productData.p_id) > 0 ? <AddRemoveButton id={productData.p_id}/> : 
                         <Button onClick={() => this.addToCart(productData.p_id,
                             productData.p_imgLink,
                             productData.p_title,
@@ -71,6 +71,7 @@ export default class ProductList extends Component {
     addToCart(productId, img, title, title_en, price) {
         let data = { id: productId, quantity: 1, img: img, title: title, title_en: title_en, price: price }
         Cart.addToCart(data)
+        this.setProducts(this.state.data)
     }
 
     itemQuantity(id) {

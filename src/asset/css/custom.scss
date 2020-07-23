@@ -120,13 +120,29 @@ $primaryBlue: #0073E6;
 }
 
 .addRemoveButton{
+    .vertical-center{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    .horizontal-center{
+        align-content: center;
+    }
     .icon{
         width: 2rem;
         height: 2rem;
     }
+    .icon:hover{
+        box-shadow: 1px 1px 1px 1px;
+    }
     .box{
-        border-color: #0073E6;
-        border-width: thick;
-        border-radius: 2px;
+        border: 2px solid black;
+    }
+    .count{
+        font-size: 1rem;
+        font-weight: 1000;
+        color: #0073E6;
     }
 }

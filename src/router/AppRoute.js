@@ -5,6 +5,7 @@ import ProductListPage from '../page/ProductListPage';
 import SearchListPage from '../page/SearchListPage';
 import ProductDetailsPage from '../page/ProductDetailsPage';
 import CartPage from '../page/CartPage';
+import PurchaseFormPage from '../page/PurchaseFormPage';
 
 class AppRoute extends Component {
     render() {
@@ -16,6 +17,7 @@ class AppRoute extends Component {
                     <Route exact path="/search/:id" component={SearchListPage} />
                     <Route exact path="/product-detail/:id" component={ProductDetailsPage} />
                     <Route exact path="/cart" component={CartPage} />
+                    <Route exact path="/continue-purchase" component={PurchaseFormPage} />
                 </Switch>
             </Fragment>
         );

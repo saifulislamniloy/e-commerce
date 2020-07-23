@@ -26,27 +26,27 @@ class Cart {
         }
         if (flag === true)
             products.items.push(x);
-        
+
         this.setLocalStorage()
     }
 
     static getLocalStorage() {
         if (sessionStorage.getItem("products") !== null) {
-            products= JSON.parse(sessionStorage.getItem("products"))
+            products = JSON.parse(sessionStorage.getItem("products"))
         }
-        console.log("get: ",products)
+        // console.log("get: ",JSON.stringify(products.items))
     }
 
     static setLocalStorage() {
         if (sessionStorage.products !== null) {
             sessionStorage.setItem("products", JSON.stringify(products))
         }
-        console.log("set: ",products)
+        // console.log("set: ",products)
     }
 
     static decreaseQuantity(x) {
         var i = this.getIndex(x)
-        if(products.items[i]['quantity'] > 0){
+        if (products.items[i]['quantity'] > 0) {
             products.items[i]['quantity'] = products.items[i]['quantity'] - 1
             this.setLocalStorage()
         }
@@ -65,7 +65,7 @@ class Cart {
         this.setLocalStorage()
     }
 
-    static getQuantity(x){
+    static getQuantity(x) {
         var i = this.getIndex(x)
         return products.items[i]['quantity']
     }
@@ -78,14 +78,34 @@ class Cart {
         }
     }
 
-    static getTotalPrice(){
+    static getTotalPrice() {
         let size = products.items.length
         let temp = 0;
         let i = 0;
-        for (i = 0; i<size; i++){
+        for (i = 0; i < size; i++) {
             temp = temp + products.items[i]['price'] * products.items[i]['quantity']
         }
         return temp
+    }
+
+    static processCartForPost() {
+        let size = products.items.length
+        let tempArr = []
+        let temp = {}
+        let i = 0
+        for (i = 0; i < size; i++) {
+            temp = {
+                customer_id: 1,
+                p_id: parseInt(products.items[i]['id']),
+                c_id: 1,
+                p_title: products.items[i]['title'],
+                p_count: products.items[i]['quantity'],
+                price: products.items[i]['price'],
+                total_price: products.items[i]['price']
+            }
+            tempArr.push(temp)
+        }
+        return JSON.stringify(tempArr)
     }
 }
 export default Cart;

@@ -5,8 +5,8 @@ import plus from '../../asset/icon/plus.png'
 import minus from '../../asset/icon/minus.png'
 import deleteImg from '../../asset/icon/delete.png'
 import BanglaConverter from '../../language/BanglaConverter'
-import EnglishConverter from '../../language/EnglishConverter'
 import LanguageMode from '../../localStorage/LanguageMode'
+import { Link } from 'react-router-dom'
 
 export default class CartItems extends Component {
     constructor() {
@@ -131,7 +131,7 @@ export default class CartItems extends Component {
                             {this.state.itemCount > 0 ? <Card className="text-center p-3">{this.state.totalPrice}</Card> : ""}
                         </Col>
                         <Col sm={12} md={12} lg={12}>
-                            {this.state.itemCount > 0 ? <Button>Purchase</Button> : <h1>Cart is Empty!</h1>}
+                            {this.state.itemCount > 0 ? <Link to="/continue-purchase"><Button>Confirm Purchase</Button></Link> : <h1>Cart is Empty!</h1>}
                         </Col>
                     </Row>
                 </Container>

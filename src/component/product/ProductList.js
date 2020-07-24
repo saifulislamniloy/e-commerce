@@ -8,7 +8,7 @@ import ProductItems from '../../language/ProductItems';
 import Cart from '../../cart/Cart';
 import AmountBanglaConverter from '../../language/AmountBanglaConverter';
 import BanglaConverter from '../../language/BanglaConverter';
-import AddRemoveButton from '../miniComponent/AddRemoveButton';
+import AddToCartButton from '../miniComponent/AddToCartButton';
 
 export default class ProductList extends Component {
     constructor(props) {
@@ -54,13 +54,14 @@ export default class ProductList extends Component {
                             <Card.Text className="title text-center">{this.props.languageMode == 1 ? AmountBanglaConverter.execute(productData.amount) : productData.amount}</Card.Text>
                             <Card.Text className="title text-center">{this.props.languageMode == 1 ? BanglaConverter.execute("" + productData.price) + " টাকা" : productData.price + " BDT"} </Card.Text>
                         </Card.Body>
-                        {Cart.itemCount(productData.p_id) > 0 ? <AddRemoveButton id={productData.p_id}/> : 
-                        <Button onClick={() => this.addToCart(productData.p_id,
-                            productData.p_imgLink,
-                            productData.p_title,
-                            productData.p_title_eng,
-                            productData.price)} variant="primary">{ProductItems.addToCart(this.props.languageMode)}</Button>}
-                    </Card>
+                        <AddToCartButton
+                                languageMode={this.props.languageMode}
+                                id={productData.p_id}
+                                img={productData.p_imgLink}
+                                title={productData.p_title}
+                                title_en={productData.p_title_eng}
+                                price={productData.price} />
+                         </Card>
                 </div>
             </Col>)
         })

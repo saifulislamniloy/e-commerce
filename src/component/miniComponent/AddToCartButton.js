@@ -20,14 +20,14 @@ export default class AddToCartButton extends Component {
     addToCart(productId, img, title, title_en, price) {
         let data = { id: productId, quantity: 1, img: img, title: title, title_en: title_en, price: price }
         Cart.addToCart(data)
-        this.setState({count:1})
+        this.setState({ count: 1 })
     }
 
     decrease() {
         if (this.state.count === 1) {
             this.remove()
             this.setState({ count: Cart.itemCount(this.props.id) })
-        }else{
+        } else {
             let data = { id: this.props.id }
             Cart.decreaseQuantity(data)
             this.setState({ count: Cart.itemCount(this.props.id) })
@@ -49,30 +49,34 @@ export default class AddToCartButton extends Component {
     render() {
         return (
             <div className="addRemoveButton horizontal-center">
-            {
-                this.state.count < 1 ?
-                    <Button onClick={() => this.addToCart(
-                        this.props.id,
-                        this.props.img,
-                        this.props.title,
-                        this.props.title_en,
-                        this.props.price)} variant="primary">{ProductItems.addToCart(this.props.languageMode)}</Button>
-                    :
-                    <Row className="box m-0 text-center p-1">
-                        <Col lg={4} md={4} sm={4}>
-                            <img className="icon" onClick={() => this.decrease()} src={minus} alt="delete" />
-                        </Col>
+                {
+                    this.state.count < 1 ?
+                        <Row>
+                            <Col lg={12} md={12} sm={12}>
+                                <Button className="math-parent" onClick={() => this.addToCart(
+                                    this.props.id,
+                                    this.props.img,
+                                    this.props.title,
+                                    this.props.title_en,
+                                    this.props.price)} variant="primary">{ProductItems.addToCart(this.props.languageMode)}</Button>
+                            </Col>
+                        </Row>
+                        :
+                        <Row className="box m-0 text-center p-1">
+                            <Col lg={4} md={4} sm={4}>
+                                <img className="icon" onClick={() => this.decrease()} src={minus} alt="delete" />
+                            </Col>
 
-                        <Col lg={4} md={4} sm={4}>
-                            <h6 className="count vertical-center">{this.state.count}</h6>
-                        </Col>
+                            <Col lg={4} md={4} sm={4}>
+                                <h6 className="count vertical-center">{this.state.count}</h6>
+                            </Col>
 
-                        <Col lg={4} md={4} sm={4}>
-                            <img className="icon" onClick={() => this.increace()} src={plus} alt="delete" />
-                        </Col>
-                    </Row>
-            }
-        </div>
+                            <Col lg={4} md={4} sm={4}>
+                                <img className="icon" onClick={() => this.increace()} src={plus} alt="delete" />
+                            </Col>
+                        </Row>
+                }
+            </div>
         )
     }
 }

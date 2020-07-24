@@ -1,31 +1,30 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 import AppUrl from '../../router/AppUrl';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import LanguageMode from '../../localStorage/LanguageMode';
 import ProductItems from '../../language/ProductItems';
 import AmountBanglaConverter from '../../language/AmountBanglaConverter';
 import BanglaConverter from '../../language/BanglaConverter';
 import Cart from '../../cart/Cart';
-import AddRemoveButton from '../miniComponent/AddRemoveButton';
 import AddToCartButton from '../miniComponent/AddToCartButton';
 
 export default class ProductDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            languageMode:LanguageMode.loadMode(),
+            languageMode: LanguageMode.loadMode(),
             titleView: "",
             priceView: "",
             imageView: "",
             specView: "",
-            ratingView:"",
-            img:"",
-            title:"",
-            title_en:"",
-            price:"",
+            ratingView: "",
+            img: "",
+            title: "",
+            title_en: "",
+            price: "",
             amount: 1,
-            data:[]
+            data: []
         }
     }
     componentDidMount() {
@@ -38,11 +37,11 @@ export default class ProductDetails extends Component {
         }
     }
 
-    loadData(){
-        axios.get(AppUrl.productDetail + "/" + this.props.id+"/"+this.props.languageMode)
+    loadData() {
+        axios.get(AppUrl.productDetail + "/" + this.props.id + "/" + this.props.languageMode)
             .then(response => {
                 console.log(response);
-                this.setState({data:response.data})
+                this.setState({ data: response.data })
                 this.setProductDetail(response.data)
             })
             .catch(function (error) {
@@ -64,13 +63,13 @@ export default class ProductDetails extends Component {
         })
         const ratingView = productData.map(productData => {
             return (
-                <h5>{""+ProductItems.rating(this.props.languageMode) +": "+productData.point/productData.person}</h5>
+                <h5>{"" + ProductItems.rating(this.props.languageMode) + ": " + productData.point / productData.person}</h5>
             )
         })
 
         const priceView = productData.map(productData => {
             return (
-                <h5>{this.props.languageMode == 1 ? BanglaConverter.execute(""+productData.price)+" টাকা" + "/" + AmountBanglaConverter.execute(productData.amount) : productData.price + " BDT/" + productData.amount}</h5>
+                <h5>{this.props.languageMode == 1 ? BanglaConverter.execute("" + productData.price) + " টাকা" + "/" + AmountBanglaConverter.execute(productData.amount) : productData.price + " BDT/" + productData.amount}</h5>
             )
         })
         const specView = productData.map(productData => {
@@ -78,7 +77,7 @@ export default class ProductDetails extends Component {
                 <h6 className="spec">{productData.specification}</h6>
             )
         })
-        this.setState({ imageView: imageView, titleView: titleView, ratingView:ratingView, priceView: priceView, specView: specView, img:productData[0]['p_imgLink'], title:productData[0]['p_title'], price:productData[0]['price'] })
+        this.setState({ imageView: imageView, titleView: titleView, ratingView: ratingView, priceView: priceView, specView: specView, img: productData[0]['p_imgLink'], title: productData[0]['p_title'], price: productData[0]['price'] })
     }
 
     addToCart(productId, img, title, title_en, price) {
@@ -111,13 +110,14 @@ export default class ProductDetails extends Component {
                             </Row>
                             <Row className="mb-2">
                                 <Col sm={6} md={6} lg={6}>
-                                    <AddToCartButton 
-                                    languageMode={this.props.languageMode}
-                                    id={parseInt(this.props.id)} 
-                                    img={this.state.img}
-                                    title={this.state.title}
-                                    title_en={this.state.title_en}
-                                    price={this.state.price}/> : 
+                                    {this.state.data.length > 0 ?
+                                        <AddToCartButton
+                                            languageMode={this.props.languageMode}
+                                            id={parseInt(this.props.id)}
+                                            img={this.state.img}
+                                            title={this.state.title}
+                                            title_en={this.state.title_en}
+                                            price={this.state.price} /> : ""}
                                 </Col>
                             </Row>
                             {/* <Row>

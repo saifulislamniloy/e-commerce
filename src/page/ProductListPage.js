@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import LanguageMode from '../localStorage/LanguageMode';
-import { ToggleButton, ToggleButtonGroup, Container } from 'react-bootstrap'
 import TopNavigation from '../component/topContent/TopNavigation'
 import ProductList from '../component/product/ProductList'
 import Footer from '../component/bottomContent/Footer';

@@ -107,7 +107,7 @@ export default class ProductDetails extends Component {
                             <Row className="mb-2">
                                 <Col sm={6} md={6} lg={6}>
                                     {Cart.itemCount(parseInt(this.props.id)) > 0 ? <AddRemoveButton id={parseInt(this.props.id)}/> : 
-                                    <Button onClick={() => this.addToCart(this.state.data[0]['p_id'],
+                                    this.state.data.length === 0 ? "" :<Button onClick={() => this.addToCart(this.state.data[0]['p_id'],
                                         this.state.data[0]['p_imgLink'],
                                         this.state.data[0]['p_title'],
                                         this.state.data[0]['p_title_eng'],

@@ -8,6 +8,7 @@ import AmountBanglaConverter from '../../language/AmountBanglaConverter';
 import BanglaConverter from '../../language/BanglaConverter';
 import Cart from '../../cart/Cart';
 import AddRemoveButton from '../miniComponent/AddRemoveButton';
+import AddToCartButton from '../miniComponent/AddToCartButton';
 
 export default class ProductDetails extends Component {
     constructor(props) {
@@ -19,6 +20,10 @@ export default class ProductDetails extends Component {
             imageView: "",
             specView: "",
             ratingView:"",
+            img:"",
+            title:"",
+            title_en:"",
+            price:"",
             amount: 1,
             data:[]
         }
@@ -73,7 +78,7 @@ export default class ProductDetails extends Component {
                 <h6 className="spec">{productData.specification}</h6>
             )
         })
-        this.setState({ imageView: imageView, titleView: titleView, ratingView:ratingView, priceView: priceView, specView: specView })
+        this.setState({ imageView: imageView, titleView: titleView, ratingView:ratingView, priceView: priceView, specView: specView, img:productData[0]['p_imgLink'], title:productData[0]['p_title'], price:productData[0]['price'] })
     }
 
     addToCart(productId, img, title, title_en, price) {
@@ -106,12 +111,13 @@ export default class ProductDetails extends Component {
                             </Row>
                             <Row className="mb-2">
                                 <Col sm={6} md={6} lg={6}>
-                                    {Cart.itemCount(parseInt(this.props.id)) > 0 ? <AddRemoveButton id={parseInt(this.props.id)}/> : 
-                                    this.state.data.length === 0 ? "" :<Button onClick={() => this.addToCart(this.state.data[0]['p_id'],
-                                        this.state.data[0]['p_imgLink'],
-                                        this.state.data[0]['p_title'],
-                                        this.state.data[0]['p_title_eng'],
-                                        this.state.data[0]['price'])} variant="primary">{ProductItems.addToCart(this.props.languageMode)}</Button>}
+                                    <AddToCartButton 
+                                    languageMode={this.props.languageMode}
+                                    id={parseInt(this.props.id)} 
+                                    img={this.state.img}
+                                    title={this.state.title}
+                                    title_en={this.state.title_en}
+                                    price={this.state.price}/> : 
                                 </Col>
                             </Row>
                             {/* <Row>

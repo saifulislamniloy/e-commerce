@@ -60,7 +60,6 @@ class Cart {
 
     static remove(x) {
         var i = this.getIndex(x)
-        // products.items[i]['quantity'] = products.items[i]['quantity'] + 1
         products.items.splice(i, 1)
         this.setLocalStorage()
     }
@@ -85,6 +84,7 @@ class Cart {
             if (products.items[i]['id'] === x)
                 return products.items[i]['quantity'];
         }
+        return -1
     }
 
 
